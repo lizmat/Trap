@@ -1,0 +1,30 @@
+use Test;
+use Trap;
+
+my $out;
+my $err;
+{   # separate capturing
+    $out = Trap(my $*OUT);
+    $err = Trap(my $*ERR);
+    say "Hello world!";
+    note "Goodbye!"
+}
+is $out.text, "Hello world!\n", 'is out text ok';
+is $err.text, "Goodbye!\n",     'is err text ok';
+
+my $merged;
+{   # merged capturing
+    $merged = Trap(my $*OUT, my $*ERR);
+    put "Hello world!";
+    note "Goodbye!"
+}
+is $merged.text, "Hello world!\nGoodbye!\n", 'is merged text ok';
+
+my $new;
+{   # creating the object manually
+    $new = my $*OUT = Capture.new;
+    print "Hello world!";
+}
+is $new.text, 'Hello world!', 'is new text ok';
+
+# vim: expandtab shiftwidth=4
