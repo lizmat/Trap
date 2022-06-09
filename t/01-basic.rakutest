@@ -22,7 +22,7 @@ is $merged.text, "Hello world!\nGoodbye!\n", 'is merged text ok';
 
 my $new;
 {   # creating the object manually
-    $new = my $*OUT = Capture.new;
+    $new = my $*OUT = Trap.new;
     print "Hello world!";
 }
 is $new.text, 'Hello world!', 'is new text ok';

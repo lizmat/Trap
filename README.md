@@ -32,7 +32,7 @@ print $merged.text;  # Hello world!␤Goodbye!␤
 
 my $new;
 {   # creating the object manually
-    $new = my $*OUT = Capture.new;
+    $new = my $*OUT = Trap.new;
     say "Hello world!";
 }
 print "with object: $new.text()";  # with object: Hello world!␤
