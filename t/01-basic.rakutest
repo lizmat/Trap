@@ -1,6 +1,8 @@
 use Test;
 use Trap;
 
+plan 4;
+
 my $out;
 my $err;
 {   # separate capturing
