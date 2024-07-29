@@ -1,6 +1,9 @@
 Revision history for Trap
 
 {{$NEXT}}
+    - Add CI badges for each OS
+    - Update copyright year
+    - Add sponsor button
 
 0.0.1  2022-06-09T21:40:24+02:00
     - Initial version
