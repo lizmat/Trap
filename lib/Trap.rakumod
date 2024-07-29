@@ -24,7 +24,7 @@ multi method CALL-ME(Trap:U: $one is raw, $two is raw) {
 
 =head1 NAME
 
-Trap - Trap $*OUT and/or $*ERR output
+Trap - Trap \$*OUT and/or \$*ERR output
 
 =head1 SYNOPSIS
 

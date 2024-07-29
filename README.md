@@ -3,7 +3,7 @@
 NAME
 ====
 
-Trap - Trap $*OUT and/or $*ERR output
+Trap - Trap \$*OUT and/or \$*ERR output
 
 SYNOPSIS
 ========
@@ -64,7 +64,7 @@ If you like this module, or what I’m doing more generally, committing to a [sm
 COPYRIGHT AND LICENSE
 =====================
 
-Copyright 2022 Elizabeth Mattijsen
+Copyright 2022, 2024 Elizabeth Mattijsen
 
 This library is free software; you can redistribute it and/or modify it under the Artistic License 2.0.
 
