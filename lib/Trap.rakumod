@@ -71,7 +71,7 @@ Trap exports a class C<Trap> that can be called to capture standard
 output and/or standard error, typically for a lexical scope.
 
 The class can be called with either one or two arguments, each of which
-should be a writeable local dynamic variable C<$*OUT> or C<$*OUT>. Or one
+should be a writeable local dynamic variable C<$*OUT> or C<$*ERR>. Or one
 can create the C<Trap> object manually.  Or one can use C<Trap> to just
 trap the standard output and/or standard error (see SYNOPSIS for examples).
 

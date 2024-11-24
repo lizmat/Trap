@@ -48,7 +48,7 @@ DESCRIPTION
 
 Trap exports a class `Trap` that can be called to capture standard output and/or standard error, typically for a lexical scope.
 
-The class can be called with either one or two arguments, each of which should be a writeable local dynamic variable `$*OUT` or `$*OUT`. Or one can create the `Trap` object manually. Or one can use `Trap` to just trap the standard output and/or standard error (see SYNOPSIS for examples).
+The class can be called with either one or two arguments, each of which should be a writeable local dynamic variable `$*OUT` or `$*ERR`. Or one can create the `Trap` object manually. Or one can use `Trap` to just trap the standard output and/or standard error (see SYNOPSIS for examples).
 
 Note that if you're only interested in surpressing output from **warnings**, you should use the `quietly` statement prefix.
 
