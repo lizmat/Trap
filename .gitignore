@@ -1,3 +1,4 @@
 .precomp/
 /Trap-*
 /releases/
+*.rakucov
