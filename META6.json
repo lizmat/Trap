@@ -10,13 +10,17 @@
   "description": "Trap \\$*OUT and/or \\$*ERR output",
   "license": "Artistic-2.0",
   "name": "Trap",
-  "perl": "6.d",
   "provides": {
     "Trap": "lib/Trap.rakumod"
   },
+  "raku": "6.d",
   "resources": [
   ],
   "source-url": "https://github.com/lizmat/Trap.git",
+  "support": {
+    "bugtracker": "https://github.com/lizmat/Trap/issues",
+    "source": "https://github.com/lizmat/Trap.git"
+  },
   "tags": [
     "TRAP",
     "STDOUT",
@@ -24,5 +28,5 @@
   ],
   "test-depends": [
   ],
-  "version": "0.0.2"
+  "version": "0.0.3"
 }

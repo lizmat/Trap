@@ -1,7 +1,7 @@
 use Test;
 use Trap;
 
-plan 4;
+plan 6;
 
 my $out;
 my $err;
@@ -28,5 +28,14 @@ my $new;
     print "Hello world!";
 }
 is $new.text, 'Hello world!', 'is new text ok';
+
+# Legacay raku tests for coverage
+my $trap = Trap.new;
+$trap.say("foo","bar","baz");
+is $trap.text, "foobarbaz\n", "did say capture the text";
+
+$trap = Trap.new;
+$trap.printf("%04d",42);
+is $trap.text, "0042", "did 'printf' capture the text";
 
 # vim: expandtab shiftwidth=4

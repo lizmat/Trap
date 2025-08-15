@@ -7,7 +7,6 @@ Trap - Trap \$*OUT and/or \$*ERR output
 =head1 SYNOPSIS
 
 =begin code :lang<raku>
-
 use Trap;
 
 my $out;
@@ -40,7 +39,6 @@ print "with object: $new.text()";  # with object: Hello world!␤
     Trap(my $*OUT, my $*ERR);
     say "shall never be seen";
 }
-
 =end code
 
 =head1 DESCRIPTION

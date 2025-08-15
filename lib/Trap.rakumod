@@ -1,4 +1,4 @@
-unit class Trap;
+unit class Trap:ver<0.0.3>:auth<zef:lizmat>;
 has str @!text;
 
 method print(*@_ --> True) {
