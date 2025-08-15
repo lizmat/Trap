@@ -39,6 +39,14 @@ print "with object: $new.text()";  # with object: Hello world!␤
     Trap(my $*OUT, my $*ERR);
     say "shall never be seen";
 }
+
+my $visual;
+{
+    # show output as well as trapping
+    $visual = Trap(my $*OUT, :tee<OUT>)
+    say "Quality first";  # also shown
+}
+print $visual.text;  # Quality First␤
 =end code
 
 =head1 DESCRIPTION
@@ -46,13 +54,38 @@ print "with object: $new.text()";  # with object: Hello world!␤
 Trap exports a class C<Trap> that can be called to capture standard
 output and/or standard error, typically for a lexical scope.
 
-The class can be called with either one or two arguments, each of which
-should be a writeable local dynamic variable C<$*OUT> or C<$*ERR>. Or one
-can create the C<Trap> object manually.  Or one can use C<Trap> to just
-trap the standard output and/or standard error (see SYNOPSIS for examples).
+The class can be called with either one or two arguments, each of
+which should be a writeable local dynamic variable C<$*OUT> or
+C<$*ERR>. Or one can create the C<Trap> object manually.  Or one
+can use C<Trap> to just trap the standard output and/or standard
+error (see SYNOPSIS for examples).
 
-Note that if you're only interested in surpressing output from B<warnings>,
-you should use the C<quietly> statement prefix.
+Note that if you're only interested in surpressing output from
+B<warnings>, you should use the C<quietly> statement prefix.
+
+=head1 TEEING OUTPUT
+
+=begin code :lang<raku>
+my $trap = Trap(my $*OUT, :tee<OUT>)
+say "foo";        # foo␤    on STDOUT
+note $trap.text;  # foo␤    on STDERR
+=end code
+
+The named argument C<:tee> can be specified to output captured
+output as it is being captured on either the original STDOUT or
+STDERR output handle (by specifying the string "OUT" or "ERR".
+
+=begin code :lang<raku>
+my $trap = Trap(my $*OUT, :tee("teed.output".IO))
+say "foo";        # foo␤    on STDOUT
+note $trap.text;  # foo␤    on STDERR
+=end code
+
+One can also specify any C<IO::Path> orC<IO::Handle> object to
+have the output trapped to.
+
+The name of this named argument is inspired by the
+L<Unix C<tee>|https://en.wikipedia.org/wiki/Tee_(command)> command.
 
 =head1 AUTHOR
 

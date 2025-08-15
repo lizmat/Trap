@@ -16,7 +16,7 @@ is $err.text, "Goodbye!\n",     'is err text ok';
 
 my $merged;
 {   # merged capturing
-    $merged = Trap(my $*OUT, my $*ERR);
+    $merged = Trap(my $*OUT, my $*ERR, :tee<OUT>);
     put "Hello world!";
     note "Goodbye!"
 }
@@ -24,7 +24,7 @@ is $merged.text, "Hello world!\nGoodbye!\n", 'is merged text ok';
 
 my $new;
 {   # creating the object manually
-    $new = my $*OUT = Trap.new;
+    $new = my $*OUT = Trap.new(:tee<ERR>);
     print "Hello world!";
 }
 is $new.text, 'Hello world!', 'is new text ok';

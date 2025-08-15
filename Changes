@@ -1,6 +1,7 @@
 Revision history for Trap
 
 {{$NEXT}}
+    - Add support for :tee named argument
 
 0.0.3  2025-08-15T15:10:19+02:00
     - Bring coverage testing to 100%

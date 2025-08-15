@@ -41,6 +41,14 @@ print "with object: $new.text()";  # with object: Hello world!␤
     Trap(my $*OUT, my $*ERR);
     say "shall never be seen";
 }
+
+my $visual;
+{
+    # show output as well as trapping
+    $visual = Trap(my $*OUT, :tee<OUT>)
+    say "Quality first";  # also shown
+}
+print $visual.text;  # Quality First␤
 ```
 
 DESCRIPTION
@@ -51,6 +59,27 @@ Trap exports a class `Trap` that can be called to capture standard output and/or
 The class can be called with either one or two arguments, each of which should be a writeable local dynamic variable `$*OUT` or `$*ERR`. Or one can create the `Trap` object manually. Or one can use `Trap` to just trap the standard output and/or standard error (see SYNOPSIS for examples).
 
 Note that if you're only interested in surpressing output from **warnings**, you should use the `quietly` statement prefix.
+
+TEEING OUTPUT
+=============
+
+```raku
+my $trap = Trap(my $*OUT, :tee<OUT>)
+say "foo";        # foo␤    on STDOUT
+note $trap.text;  # foo␤    on STDERR
+```
+
+The named argument `:tee` can be specified to output captured output as it is being captured on either the original STDOUT or STDERR output handle (by specifying the string "OUT" or "ERR".
+
+```raku
+my $trap = Trap(my $*OUT, :tee("teed.output".IO))
+say "foo";        # foo␤    on STDOUT
+note $trap.text;  # foo␤    on STDERR
+```
+
+One can also specify any `IO::Path` or`IO::Handle` object to have the output trapped to.
+
+The name of this named argument is inspired by the [Unix `tee`](https://en.wikipedia.org/wiki/Tee_(command)) command.
 
 AUTHOR
 ======

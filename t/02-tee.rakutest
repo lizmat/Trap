@@ -1,0 +1,21 @@
+use Test;
+use Trap;
+
+plan 5;
+
+my $string = "Tis this, tis that, it's always what";
+my $io     = $*PROGRAM.sibling("tee-file");
+END .unlink with $io;
+
+for "io", $io, "handle", $io.open(:w) -> $type, $tee {
+    my $trap := Trap(my $*OUT, :$tee);
+    say $string;
+    is $trap.text, "$string\n", "did the string get captured with $type";
+    $trap.close;
+
+    is $io.slurp, "$string\n", "did the string wind up in the $type";
+}
+
+dies-ok { Trap(my $*ERR, :tee<tee>) }, 'invalid tee specified';
+
+# vim: expandtab shiftwidth=4
