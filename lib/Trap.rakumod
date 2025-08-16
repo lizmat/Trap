@@ -1,4 +1,4 @@
-unit class Trap:ver<0.0.4>:auth<zef:lizmat>;
+unit class Trap:ver<0.0.5>:auth<zef:lizmat>;
 has str @!text;
 has     $.tee;
 
