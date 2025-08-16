@@ -89,7 +89,7 @@ say "foo";        # foo␤    on STDOUT
 note $trap.text;  # foo␤    on STDERR
 ```
 
-The named argument `:tee` can be specified to output captured output as it is being captured on either the original STDOUT or STDERR output handle (by specifying the string "OUT" or "ERR".
+The named argument `:tee` can be specified to output captured output as it is being captured on either the original STDOUT or STDERR output handle (by specifying the string "OUT" or "ERR").
 
 ```raku
 my $trap = Trap(my $*OUT, :tee("teed.output".IO))
@@ -97,7 +97,7 @@ say "foo";        # foo␤    on STDOUT
 note $trap.text;  # foo␤    on STDERR
 ```
 
-One can also specify any `IO::Path` or`IO::Handle` object to have the output trapped to.
+One can also specify any `IO::Path` or `IO::Handle` object to have the output trapped to.
 
 The name of this named argument is inspired by the [Unix `tee`](https://en.wikipedia.org/wiki/Tee_(command)) command.
 

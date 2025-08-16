@@ -41,7 +41,7 @@ my $new;
 }
 is $new.text, 'Hello world!', 'is new text ok';
 
-# Legacay raku tests for coverage
+# Legacy raku tests for coverage
 my $legacy = Trap.new;
 $legacy.say("foo","bar","baz");
 is $legacy.text, "foobarbaz\n", "did say capture the text";
