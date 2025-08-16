@@ -44,6 +44,8 @@ method printf($format, *@_ --> True) {  # older versions of Raku
 
 method text(--> str) { @!text.join }
 
+method silent(--> Bool:D) { !@!text }
+
 multi method CALL-ME(Trap:U: $one is raw, :$tee) {
     $one = self.new(:$tee)
 }

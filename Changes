@@ -1,6 +1,7 @@
 Revision history for Trap
 
 {{$NEXT}}
+    - Add support for "silent" method
 
 0.0.4  2025-08-15T22:20:10+02:00
     - Add support for :tee named argument

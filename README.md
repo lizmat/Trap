@@ -42,6 +42,13 @@ print "with object: $new.text()";  # with object: Hello world!␤
     say "shall never be seen";
 }
 
+my $trap;
+{
+    $trap = Trap(my $*OUT);
+    note "not on STDOUT";
+}
+say $trap.silent;  # True
+
 my $visual;
 {
     # show output as well as trapping
@@ -59,6 +66,19 @@ Trap exports a class `Trap` that can be called to capture standard output and/or
 The class can be called with either one or two arguments, each of which should be a writeable local dynamic variable `$*OUT` or `$*ERR`. Or one can create the `Trap` object manually. Or one can use `Trap` to just trap the standard output and/or standard error (see SYNOPSIS for examples).
 
 Note that if you're only interested in surpressing output from **warnings**, you should use the `quietly` statement prefix.
+
+METHODS
+=======
+
+text
+----
+
+Returns the combined text that was captured.
+
+silent
+------
+
+Returns `True` if no output was captured at all (not even empty strings), `False` otherwise.
 
 TEEING OUTPUT
 =============

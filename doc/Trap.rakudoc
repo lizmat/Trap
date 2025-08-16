@@ -40,6 +40,13 @@ print "with object: $new.text()";  # with object: Hello world!␤
     say "shall never be seen";
 }
 
+my $trap;
+{
+    $trap = Trap(my $*OUT);
+    note "not on STDOUT";
+}
+say $trap.silent;  # True
+
 my $visual;
 {
     # show output as well as trapping
@@ -62,6 +69,17 @@ error (see SYNOPSIS for examples).
 
 Note that if you're only interested in surpressing output from
 B<warnings>, you should use the C<quietly> statement prefix.
+
+=head1 METHODS
+
+=head2 text
+
+Returns the combined text that was captured.
+
+=head2 silent
+
+Returns C<True> if no output was captured at all (not even empty
+strings), C<False> otherwise.
 
 =head1 TEEING OUTPUT
 

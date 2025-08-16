@@ -1,7 +1,7 @@
 use Test;
 use Trap;
 
-plan 6;
+plan 8;
 
 my $out;
 my $err;
@@ -22,6 +22,18 @@ my $merged;
 }
 is $merged.text, "Hello world!\nGoodbye!\n", 'is merged text ok';
 
+my $trap;
+{
+    $trap = Trap(my $*OUT);
+    note "not on STDOUT";
+}
+is-deeply $trap.silent, True, 'no output was captured';
+{
+    $trap = Trap(my $*ERR);
+    note "not on STDOUT";
+}
+is-deeply $trap.silent, False, 'output was captured';
+
 my $new;
 {   # creating the object manually
     $new = my $*OUT = Trap.new(:tee<ERR>);
@@ -30,12 +42,12 @@ my $new;
 is $new.text, 'Hello world!', 'is new text ok';
 
 # Legacay raku tests for coverage
-my $trap = Trap.new;
-$trap.say("foo","bar","baz");
-is $trap.text, "foobarbaz\n", "did say capture the text";
+my $legacy = Trap.new;
+$legacy.say("foo","bar","baz");
+is $legacy.text, "foobarbaz\n", "did say capture the text";
 
-$trap = Trap.new;
-$trap.printf("%04d",42);
-is $trap.text, "0042", "did 'printf' capture the text";
+$legacy = Trap.new;
+$legacy.printf("%04d",42);
+is $legacy.text, "0042", "did 'printf' capture the text";
 
 # vim: expandtab shiftwidth=4
